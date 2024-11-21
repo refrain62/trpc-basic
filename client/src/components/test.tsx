@@ -26,6 +26,10 @@ const Test = () => {
     getHello2();
   }, []);
 
+  // input用
+  const test = trpc.helloName.useQuery({ name: 'John', age: 10 });
+  console.log(test.data);
+
   return (
     <>
       <div>hello: {hello.data}</div>
