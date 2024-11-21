@@ -1,6 +1,11 @@
+import { trpc } from "../utils/trpc";
+
 const Test = () => {
+  const hello = trpc.hello.useQuery();
+  console.log(hello);
+
   return (
-    <div>Test</div>
+    <div>{hello.data}</div>
   )
 };
 

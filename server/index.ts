@@ -1,6 +1,7 @@
 import express from 'express';
 import { initTRPC, router } from '@trpc/server';
 import * as trpcExpress from '@trpc/server/adapters/express';
+import cors from 'cors';
 
 const app = express();
 const PORT = 3000;
@@ -17,6 +18,7 @@ app.get('/', (_req, res) => {
   res.send('hello')
 });
 
+app.use(cors());
 app.use(
   '/trpc',
   trpcExpress.createExpressMiddleware({
