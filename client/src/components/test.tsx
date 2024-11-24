@@ -27,10 +27,20 @@ const Test = () => {
     getHello2();
   }, []);
 
+  const utils = trpc.useContext();
+  const addTodo = trpc.addTodo.useMutation({
+    onSuccess: () => {
+      utils.todos.invalidate();
+    }
+  });
+
   const handleKeyDown = (e) => {
     const name = e.target.value;
     if  (e.key === 'Enter' && name) {
       console.log('name', name);
+
+      addTodo.mutate({ name });
+      e.target.value = '';
     }
   };
 
