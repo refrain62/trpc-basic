@@ -11,6 +11,7 @@ const PORT = 3000;
 const prisma = new PrismaClient();
 
 const createContext = (opts: trpcExpress.CreateExpressContextOptions) => {
+  console.log(opts.req.headers);
   return { prisma };
 };
 
