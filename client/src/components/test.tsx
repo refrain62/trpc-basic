@@ -27,6 +27,13 @@ const Test = () => {
     getHello2();
   }, []);
 
+  const handleKeyDown = (e) => {
+    const name = e.target.value;
+    if  (e.key === 'Enter' && name) {
+      console.log('name', name);
+    }
+  };
+
   // input用
   const test = trpc.helloName.useQuery({ name: 'John', age: 10 });
   console.log(test.data);
@@ -38,6 +45,12 @@ const Test = () => {
       <div>hello: {hello.data}</div>
       <div>hello2: {hello2}</div>
 
+      <h1>Todo</h1>
+      <div>
+        <lable id="name">Add Todo:</lable>
+        <input name="name" onKeyDown={handleKeyDown} />
+      </div>
+      
       <ul>
         {todos?.map((todo) => (
           <li key={todo.id}>{todo.name}</li>

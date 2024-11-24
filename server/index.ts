@@ -31,10 +31,23 @@ const appRouter = t.router({
       }
     }), 
   todos: t.procedure
-  .query(async ({ ctx }) => {
-    const todos = await prisma.todo.findMany();
-    return todos;
-  }),
+    .query(async ({ ctx }) => {
+      const todos = await prisma.todo.findMany();
+      return todos;
+    }),
+  addTodo: t.procedure
+    .input(
+      z.object({
+        name: z.string(),
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      const todo = await prisma.todo.create({
+        data: input,
+      });
+
+      return todo;
+    })
 });
 
 app.get('/', (_req, res) => {
