@@ -9,3 +9,10 @@ datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
+
+// TODO用テーブル
+model Todo {
+  id          Int       @id @default(autoincrement())
+  name        String
+  isComplete  Boolean   @default(value: false)
+}
